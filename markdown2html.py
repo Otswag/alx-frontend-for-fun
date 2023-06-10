@@ -1,45 +1,48 @@
 #!/usr/bin/python3
 
-"""
-
-Converts a Markdown file to an HTML file.
-
-Usage: ./markdown2html.py <input_file> <output_file>
-
-"""
-
 import sys
 
-import markdown
+import os
 
-if len(sys.argv) != 3:
+def markdown2html(markdown_file, output_file):
 
-    print("Usage: ./markdown2html.py <input_file> <output_file>", file=sys.stderr)
+    # Check if the markdown file exists
 
-    sys.exit(1)
+    if not os.path.isfile(markdown_file):
 
-input_file = sys.argv[1]
+        print(f"Missing {markdown_file}", file=sys.stderr)
 
-output_file = sys.argv[2]
+        sys.exit(1)
 
-try:
+    # Conversion logic from markdown to HTML goes here
 
-    with open(input_file, 'r') as f:
+    # You can use any Markdown to HTML converter library or tool
 
-        markdown_text = f.read()
+    # Placeholder implementation: copy the content of the markdown file to the output file
 
-except FileNotFoundError:
+    with open(markdown_file, 'r') as md:
 
-    print(f"Missing {input_file}", file=sys.stderr)
+        markdown_content = md.read()
 
-    sys.exit(1)
+    with open(output_file, 'w') as html:
 
-html_text = markdown.markdown(markdown_text)
+        html.write(markdown_content)
 
-with open(output_file, 'w') as f:
-
-    f.write(html_text)
+    sys.exit(0)
 
 if __name__ == "__main__":
 
-    sys.exit(0)
+    # Check the number of arguments
+
+    if len(sys.argv) < 3:
+
+        print("Usage: ./markdown2html.py <markdown_file> <output_file>", file=sys.stderr)
+
+        sys.exit(1)
+
+    markdown_file = sys.argv[1]
+
+    output_file = sys.argv[2]
+
+    markdown2html(markdown_file, output_file)
+
