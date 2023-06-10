@@ -34,7 +34,7 @@ if __name__ == "__main__":
 
     # Check the number of arguments
 
-    if len(sys.argv) < 3:
+    if len(sys.argv) != 3:
 
         print("Usage: ./markdown2html.py <markdown_file> <output_file>", file=sys.stderr)
 
@@ -45,4 +45,3 @@ if __name__ == "__main__":
     output_file = sys.argv[2]
 
     markdown2html(markdown_file, output_file)
-
