@@ -43,4 +43,3 @@ with open(output_file, 'w') as f:
 if __name__ == "__main__":
 
     sys.exit(0)
- 
