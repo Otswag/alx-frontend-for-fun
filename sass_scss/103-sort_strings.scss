@@ -1,52 +1,7 @@
-/* Sort the variable $list_to_sort and print the sorted list in the debug output */
+$list_to_sort: john, anna, zoe, kim, felicia, carrie;
 
-// Define a function to sort a list
-
-@function sort($list) {
-
-  $length: length($list);
-
-  @if $length <= 1 {
-
-    @return $list;
-
-  } @else {
-
-    $pivot: nth($list, 1);
-
-    $less: ();
-
-    $greater: ();
-
-    @for $i from 2 through $length {
-
-      $item: nth($list, $i);
-
-      @if $item <= $pivot {
-
-        $less: append($less, $item);
-
-      } @else {
-
-        $greater:
-append($greater, $item);
-
-      }
-
-    }
-
-    @return join(sort($less), join($pivot, sort($greater)));
-
-  }
-
-}
-
-// Define the list to sort
-
-$list_to_sort: john anna zoe kim felicia carrie;
-
-// Sort the list and print the sorted list in the debug output
+@debug "Original list: #{$list_to_sort}";
 
 $sorted_list: sort($list_to_sort);
 
-@debug $sorted_list;
+@debug "Sorted list: #{$sorted_list}";
