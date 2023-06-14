@@ -1,7 +1,31 @@
-$list_to_sort: john, anna, zoe, kim, felicia, carrie;
+/* Sass file that sorts a list and prints the sorted list in the debug output */
 
-@debug "Original list: #{$list_to_sort}";
+$list_to_sort: john anna zoe kim felicia carrie;
 
-$sorted_list: sort($list_to_sort);
+@function sort_list($list) {
 
-@debug "Sorted list: #{$sorted_list}";
+  $sorted_list: ();
+
+  @each $item in $list {
+
+    $index: 1;
+
+    @each $other_item in $sorted_list {
+
+      @if $item < $other_item {
+
+        @break;
+
+      }
+
+      $index: $index + 1;
+
+    }
+
+    $sorted_list: set-nth($sorted_list, $index, $item);
+
+  }
+
+  @return $sorted_list;
+
+}
