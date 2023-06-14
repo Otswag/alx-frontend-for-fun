@@ -1,31 +1,15 @@
-/* Sass file that sorts a list and prints the sorted list in the debug output */
+/* Sorting a list in Sass */
 
-$list_to_sort: john anna zoe kim felicia carrie;
+/* My style */
 
-@function sort_list($list) {
+/* Define the unsorted list */
 
-  $sorted_list: ();
+$list_to_sort: john, anna, zoe, kim, felicia, carrie;
 
-  @each $item in $list {
+/* Sort the list using the sort() function */
 
-    $index: 1;
+$sorted_list: sort($list_to_sort);
 
-    @each $other_item in $sorted_list {
+/* Print the sorted list in the debug output */
 
-      @if $item < $other_item {
-
-        @break;
-
-      }
-
-      $index: $index + 1;
-
-    }
-
-    $sorted_list: set-nth($sorted_list, $index, $item);
-
-  }
-
-  @return $sorted_list;
-
-}
+@debug $sorted_list;
